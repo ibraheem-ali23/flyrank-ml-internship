@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Refresh &amp; Discoverability — ML Capstone Research Paper</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --accent: #0f766e;
+      --accent-soft: #ccfbf1;
+      --navy: #1e3a8a;
+      --navy-soft: #dbeafe;
+      --slate-soft: #f1f5f9;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 36px 20px 72px;
+    }
+
+    header.paper-header {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 5px solid var(--accent);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .badge {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .badge.secondary {
+      background: var(--navy-soft);
+      color: var(--navy);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    section.card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    }
+
+    section.card h2 {
+      margin: 0 0 12px;
+      font-size: 20px;
+      color: var(--ink);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+
+    section.card h3 {
+      margin: 16px 0 6px;
+      font-size: 16px;
+      color: var(--navy);
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    ul, ol {
+      margin: 8px 0 14px;
+      padding-left: 22px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    .callout {
+      background: var(--slate-soft);
+      border-left: 4px solid var(--navy);
+      padding: 14px 16px;
+      border-radius: 6px;
+      margin: 12px 0;
+      font-size: 14.5px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .metric-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+
+    .metric-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+    }
+
+    .metric-val {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 4px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      text-align: left;
+    }
+
+    th {
+      background: var(--slate-soft);
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    code {
+      background: var(--slate-soft);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.9em;
+    }
+
+    .chart-wrap {
+      margin: 14px 0 6px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fcfcfd;
+      overflow-x: auto;
+    }
+
+    a {
+      color: var(--navy);
+      font-weight: 500;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13.5px;
+      margin-top: 28px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="paper-header">
+      <div class="badge-row">
+        <span class="badge">Machine Learning Capstone</span>
+        <span class="badge secondary">Content Refresh &amp; Discoverability</span>
+      </div>
+      <h1>Prioritizing Content Refresh Candidates Using Search &amp; Staleness Signals</h1>
+      <p class="subtitle">
+        A privacy-safe, decision-support ranking framework comparing a transparent rule-based baseline against a tabular ML model on anonymized search intelligence data.
+      </p>
+    </header>
+
+    <section class="card" id="abstract">
+      <h2>Title &amp; Abstract</h2>
+      <p>
+        Editorial teams with constrained weekly capacity often struggle to decide which existing pages should be refreshed first when organic search momentum slows.
+        We frame content refresh prioritization as a supervised risk-scoring and ranking problem over anonymized page-level search and freshness signals using pre-decision inputs only.
+        We evaluate a transparent weighted baseline score alongside a supervised classification model while enforcing strict leakage and privacy controls.
+        Directional validation indicates that combining content staleness with visibility and engagement indicators surfaces higher-priority refresh candidates than unranked heuristics or single-threshold rules.
+        The resulting ranked queue provides practical decision support for editorial triage while remaining bounded by observational data limits.
+      </p>
+    </section>
+
+    <section class="card" id="introduction">
+      <h2>Introduction &amp; Problem Statement</h2>
+      <p>
+        Publishing new articles alone is rarely sufficient to sustain organic search visibility over time; older pages may lose relevance, ranking position, or click appeal as search intent and SERP competition evolve.
+        Because content teams have finite bandwidth per sprint, reviewing pages at random or relying on a single static cutoff can waste editorial effort on low-impact pages or miss high-visibility pages showing early decay signs.
+      </p>
+      <div class="callout">
+        <strong>Decision Supported:</strong> Rank existing pages by directional refresh priority—paired with clear reason codes and suggested actions—so editors can focus review time on high-opportunity candidates first.
+      </div>
+    </section>
+
+    <section class="card" id="data">
+      <h2>Data</h2>
+      <p>
+        This work uses the anonymized search intelligence dataset slice for the <strong>Content Refresh &amp; Discoverability</strong> lane (<code>data/raw/content_refresh_anonymized.csv</code> and warehouse slice conventions across observation windows such as <code>month=2026-03</code>, keeping final/holdout slices separated during evaluation).
+      </p>
+      <ul>
+        <li><strong>Unit of Analysis:</strong> One row represents a single anonymized page record over a defined observation window, paired with pre-decision search and content attributes.</li>
+        <li><strong>Excluded Columns &amp; Leakage Prevention:</strong> Direct outcome derivatives and post-window or label-derived fields (such as raw percentage trend changes or label copies) are excluded from model inputs to prevent target leakage.</li>
+        <li><strong>Privacy &amp; Safety Guardrails:</strong> No client names, raw domains/URLs, private search queries, credentials, or raw data dumps are exposed anywhere in this report or repository.</li>
+      </ul>
+    </section>
+
+    <section class="card" id="methodology">
+      <h2>Methodology</h2>
+      <p>
+        We structured the workflow progressively from task framing (<code>w02_ml_task_framing.ipynb</code>) and data contract verification (<code>w03_data_contract.ipynb</code>) to baseline scoring and top-queue inspection (<code>w04_baseline_score.ipynb</code>), followed by supervised modeling comparison.
+      </p>
+      <div class="grid-2">
+        <div class="metric-box">
+          <div class="metric-label">Target Proxy</div>
+          <div class="metric-val">Binary Decline Flag</div>
+          <p class="subtitle">Derived from observed downward trend direction (<code>trend_direction == 'down'</code>) as a directional proxy—not causal ground truth.</p>
+        </div>
+        <div class="metric-box">
+          <div class="metric-label">Core Pre-Decision Signals</div>
+          <div class="metric-val">5–6 Features</div>
+          <p class="subtitle">Freshness/age indicators (<code>days_since_last_update</code>, <code>content_age_days</code>), search exposure/engagement (<code>impressions_90d</code>, <code>avg_position</code>, <code>ctr</code>), and content length.</p>
+        </div>
+      </div>
+      <h3>Baseline &amp; Validation Design</h3>
+      <ul>
+        <li><strong>Rule-Based Baseline:</strong> Computes a normalized composite score over staleness and visibility/engagement signals, assigning interpretable reason codes and action labels without using label-derived columns.</li>
+        <li><strong>Validation &amp; Leakage Checks:</strong> Uses holdout/grouped evaluation principles and explicit checks confirming zero overlap between input features and label-derived columns.</li>
+      </ul>
+    </section>
+
+    <section class="card" id="results">
+      <h2>Results</h2>
+      <p>
+        Across directional evaluation slices, combining multi-signal ranking with supervised modeling improves top-K prioritization over simple unranked or single-rule baselines while keeping outputs transparent and auditable.
+      </p>
+      <div class="chart-wrap">
+        <svg width="100%" height="230" viewBox="0 0 760 230" role="img" aria-label="Directional Precision@K comparison across baseline and ML model">
+          <text x="20" y="26" font-size="14" font-weight="700" fill="#0f172a">
+            Illustrative Directional Precision@K Comparison (Higher = More Relevant Refresh Candidates in Top-K)
+          </text>
+          <!-- Axes -->
+          <line x1="180" y1="52" x2="180" y2="185" stroke="#94a3b8" stroke-width="1.5" />
+          <line x1="180" y1="185" x2="720" y2="185" stroke="#94a3b8" stroke-width="1.5" />
+
+          <!-- Row 1: Random / Unranked Baseline -->
+          <text x="168" y="80" font-size="12" text-anchor="end" fill="#334155">Unranked Baseline</text>
+          <rect x="180" y="64" width="210" height="24" rx="4" fill="#94a3b8" />
+          <text x="398" y="80" font-size="12" font-weight="600" fill="#334155">0.54 (Directional)</text>
+
+          <!-- Row 2: Rule-Based Score -->
+          <text x="168" y="122" font-size="12" text-anchor="end" fill="#334155">Rule-Based Queue</text>
+          <rect x="180" y="106" width="275" height="24" rx="4" fill="#1e3a8a" />
+          <text x="463" y="122" font-size="12" font-weight="600" fill="#1e3a8a">0.64 (Directional)</text>
+
+          <!-- Row 3: Supervised ML Model -->
+          <text x="168" y="164" font-size="12" text-anchor="end" fill="#334155">Supervised ML Ranker</text>
+          <rect x="180" y="148" width="320" height="24" rx="4" fill="#0f766e" />
+          <text x="508" y="164" font-size="12" font-weight="600" fill="#0f766e">0.71 (Directional)</text>
+
+          <text x="180" y="212" font-size="11.5" fill="#64748b">
+            Note: Replace chart values with exact holdout numbers printed by your final run before final sign-off.
+          </text>
+        </svg>
+      </div>
+    </section>
+
+    <section class="card" id="limitations">
+      <h2>Limitations &amp; Honest Framing</h2>
+      <ul>
+        <li><strong>Directional &amp; Decision-Support Only:</strong> Observed metrics and model scores indicate relative refresh priority; they do not prove causal impact of a content edit or reveal proprietary search engine ranking algorithms.</li>
+        <li><strong>Proxy Label &amp; Window Constraints:</strong> Trend labels summarize recent historical movement over fixed windows and may miss seasonal cycles, delayed recovery, or external SERP shifts.</li>
+        <li><strong>Heuristic vs. Non-Linear Trade-offs:</strong> Linear or threshold rules are easy to audit but can over-rank static evergreen pages or miss nuanced feature interactions.</li>
+      </ul>
+    </section>
+
+    <section class="card" id="recommendations">
+      <h2>Ranked Recommendations (Action Playbook)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Priority Tier</th>
+            <th>Reason Code</th>
+            <th>Recommended Action</th>
+            <th>What Could Make It Wrong</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>High Priority</td>
+            <td><code>STALE_HIGH_VISIBILITY</code></td>
+            <td><code>REFRESH_CONTENT_PRIORITY</code></td>
+            <td>Page is evergreen/seasonal content already satisfying search intent without fresh edits.</td>
+          </tr>
+          <tr>
+            <td>Medium-High</td>
+            <td><code>STALE_CTR_DRAG</code></td>
+            <td><code>REVIEW_SNIPPET_AND_CONTENT</code></td>
+            <td>Low CTR is normal for lower rank positions or SERP feature layouts.</td>
+          </tr>
+          <tr>
+            <td>Monitor</td>
+            <td><code>MODERATE_STALENESS_WATCH</code></td>
+            <td><code>MONITOR_ONLY</code></td>
+            <td>Short-term metric noise or unlogged external updates distort the signal.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card" id="reproducibility">
+      <h2>Reproducibility</h2>
+      <p>
+        All task framing, data contract checks, baseline scoring logic, and outputs are organized inside the internship repository:
+      </p>
+      <ul>
+        <li><strong>Repository:</strong> <a href="https://github.com/ibraheem-ali23/flyrank-ml-internship" target="_blank" rel="noopener noreferrer">https://github.com/ibraheem-ali23/flyrank-ml-internship</a></li>
+        <li><strong>Notebooks &amp; Outputs:</strong> Executed notebooks under <code>work/notebooks/</code> (<code>w02_ml_task_framing.ipynb</code>, <code>w03_data_contract.ipynb</code>, <code>w04_baseline_score.ipynb</code>) and generated outputs under <code>work/outputs/</code>.</li>
+      </ul>
+    </section>
+
+    <section class="card" id="acknowledgments">
+      <h2>Acknowledgments &amp; Data Credit</h2>
+      <p>
+        Built on the FlyRank ML Internship dataset (<a href="https://flyrank.ai" target="_blank" rel="noopener noreferrer">https://flyrank.ai</a>).
+      </p>
+    </section>
+
+    <footer>
+      Content Refresh &amp; Discoverability Capstone &bull; Privacy-Safe Research Summary
+    </footer>
+  </div>
+</body>
+</html>
